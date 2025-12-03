@@ -1,0 +1,135 @@
+.navbar {
+  background-color: var(--surface-elevated);
+  border-bottom: 1px solid var(--surface-border);
+  color: var(--surface-contrast);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--surface-contrast);
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: var(--surface-accent);
+  text-decoration: none;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  color: var(--surface-contrast);
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
+  color: var(--surface-accent);
+  text-decoration: none;
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--surface-accent);
+  font-weight: 600;
+}
+
+.navbar-nav .nav-link.disabled {
+  color: var(--surface-muted);
+  cursor: not-allowed;
+}
+
+.navbar-actions {
+  gap: 1rem;
+}
+
+.search-form .form-control {
+  width: 250px;
+}
+
+@media (max-width: 992px) {
+  .search-form .form-control {
+    width: 150px;
+  }
+}
+
+.form-control {
+  background-color: var(--surface-bg);
+  border-color: var(--surface-border);
+  color: var(--surface-contrast);
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: var(--surface-accent);
+  box-shadow: none;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--surface-border);
+  background-color: var(--surface-elevated);
+  color: var(--surface-contrast);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  background-color: var(--surface-hover);
+  border-color: var(--surface-accent);
+  color: var(--surface-accent);
+}
+
+.theme-toggle__icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-auth {
+  min-width: 140px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--surface-border);
+  background-color: var(--surface-elevated);
+  color: var(--surface-contrast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.avatar.placeholder {
+  background-color: var(--surface-accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.navbar .dropdown-menu {
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 10px 20px rgba(15, 17, 22, 0.15);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .dropdown-item {
+  color: var(--surface-contrast);
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  background-color: var(--surface-hover);
+  color: var(--surface-accent);
+}
