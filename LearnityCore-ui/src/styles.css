@@ -1,0 +1,58 @@
+:root {
+	color-scheme: light;
+	--surface-bg: #f4f6fb;
+	--surface-elevated: #ffffff;
+	--surface-contrast: #212529;
+	--surface-muted: #6c757d;
+	--surface-border: rgba(33, 37, 41, 0.12);
+	--surface-hover: rgba(13, 110, 253, 0.1);
+	--surface-accent: #0d6efd;
+}
+
+:root[data-theme='dark'] {
+	color-scheme: dark;
+	--surface-bg: #0f1116;
+	--surface-elevated: #181b23;
+	--surface-contrast: #f8f9fa;
+	--surface-muted: #9ea4b0;
+	--surface-border: rgba(248, 249, 250, 0.18);
+	--surface-hover: rgba(77, 171, 247, 0.2);
+	--surface-accent: #4dabf7;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background-color: var(--surface-bg);
+	color: var(--surface-contrast);
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a,
+.nav-link,
+.navbar-brand {
+	text-decoration: none;
+}
+
+main.app-shell {
+	padding: 2rem;
+	background-color: var(--surface-bg);
+	color: var(--surface-contrast);
+	min-height: calc(100vh - 72px);
+	transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card,
+.panel,
+.surface {
+	background-color: var(--surface-elevated);
+	color: var(--surface-contrast);
+	border-radius: 1rem;
+	border: 1px solid var(--surface-border);
+	box-shadow: 0 12px 24px rgba(15, 17, 22, 0.08);
+	transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

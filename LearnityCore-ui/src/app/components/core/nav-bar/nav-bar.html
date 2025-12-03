@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">LearnityCore</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Courses
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/course/enrollments']" routerLinkActive="active">Enrollments</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/course/browse']" routerLinkActive="active">All Courses</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/course/category']" routerLinkActive="active">Categories</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item" *ngIf="loginDisplay">
+          <a class="nav-link" [routerLink]="['/user/update-profile']" routerLinkActive="active">Update Profile</a>
+        </li>
+        <li class="nav-item" *ngIf="loginDisplay">
+          <a class="nav-link" [routerLink]="['/user/chat']" routerLinkActive="active">Chat</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="requestsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Requests
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="requestsDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/technology/request/video']" routerLinkActive="active">Request a Video</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/technology/requests']" routerLinkActive="active">My Requests</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="loginDisplay">
+          <a class="nav-link dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/course/list']" routerLinkActive="active">List Courses</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/course/create']" routerLinkActive="active">Create Course</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/admin/technology/requests']" routerLinkActive="active">Video Requests</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/about-us']" routerLinkActive="active">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/contact-us']" routerLinkActive="active">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/plans-and-price']" routerLinkActive="active">Plans &amp; Pricing</a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-3 navbar-actions">
+        <form class="d-flex search-form" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search courses" aria-label="Search" />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+
+        <button
+          type="button"
+          class="theme-toggle"
+          (click)="toggleTheme()"
+          [attr.aria-label]="themeLabel()"
+          [attr.title]="themeLabel()"
+        >
+          <ng-container *ngIf="isDarkMode(); else sunIcon">
+            <svg class="theme-toggle__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M21 12.79A9 9 0 0 1 11.21 3a7 7 0 1 0 9.79 9.79Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path>
+            </svg>
+          </ng-container>
+          <ng-template #sunIcon>
+            <svg class="theme-toggle__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"></circle>
+              <g stroke="currentColor" stroke-linecap="round" stroke-width="1.5">
+                <line x1="12" y1="2" x2="12" y2="5"></line>
+                <line x1="12" y1="19" x2="12" y2="22"></line>
+                <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"></line>
+                <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"></line>
+                <line x1="2" y1="12" x2="5" y2="12"></line>
+                <line x1="19" y1="12" x2="22" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"></line>
+                <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"></line>
+              </g>
+            </svg>
+          </ng-template>
+        </button>
+
+        <div class="nav-auth d-flex align-items-center gap-2">
+          <ng-container *ngIf="profilePictureUrl; else defaultAvatar">
+            <img [src]="profilePictureUrl" alt="Profile" class="avatar" />
+          </ng-container>
+          <ng-template #defaultAvatar>
+            <div class="avatar placeholder" aria-hidden="true">SL</div>
+          </ng-template>
+
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            *ngIf="!loginDisplay"
+            (click)="loginRedirect()"
+          >
+            Login
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            *ngIf="loginDisplay"
+            (click)="logout()"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
