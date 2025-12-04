@@ -28,6 +28,10 @@ namespace LSC.OnlineCourse.API.Chat
 
         private readonly IUserProfileService _userProfileService;
 
+        /// <summary>
+        /// triggered when a new client connects to the hub
+        /// </summary>
+        /// <returns></returns>
         public override async Task OnConnectedAsync()
         {
             // Get user identity information
@@ -56,6 +60,11 @@ namespace LSC.OnlineCourse.API.Chat
             await base.OnConnectedAsync();
         }
 
+        /// <summary>
+        /// Triggered when a client disconnects from the hub
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns></returns>
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             var user = ConnectedUsers.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);
@@ -76,7 +85,11 @@ namespace LSC.OnlineCourse.API.Chat
             await base.OnDisconnectedAsync(exception);
         }
 
-        // Send message between connected user and admin
+        /// <summary>
+        /// Send message between connected user and admin
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public async Task SendMessage(string message)
         {
             var sender = CurrentChatMembers.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);//or we can use senderConnectionId
@@ -98,7 +111,10 @@ namespace LSC.OnlineCourse.API.Chat
             }
         }
 
-        // User joins the chat queue
+        /// <summary>
+        /// User joins the chat queue
+        /// </summary>
+        /// <returns></returns>
         public async Task JoinChatQueue()
         {
             var user = ConnectedUsers.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);
@@ -113,6 +129,13 @@ namespace LSC.OnlineCourse.API.Chat
             }
         }
 
+        /// <summary>
+        /// Ends the current chat session and notifies all participants.
+        /// </summary>
+        /// <remarks>This method sends a notification to each participant in the chat, informing them that
+        /// the chat has ended.  It also clears the list of current chat members and messages. Any unsaved chat messages
+        /// should be persisted  before calling this method to avoid data loss.</remarks>
+        /// <returns></returns>
         public async Task EndChat()
         {
             foreach (var user in CurrentChatMembers)
@@ -125,7 +148,11 @@ namespace LSC.OnlineCourse.API.Chat
             CurrentChatMessages.Clear();
         }
 
-        // Admin picks a user to chat with
+        /// <summary>
+        /// dmin picks a user to chat with
+        /// </summary>
+        /// <param name="connectionId"></param>
+        /// <returns></returns>
         public async Task ConnectWithUser(string connectionId)
         {
             var admin = Admins.FirstOrDefault(a => a.ConnectionId == Context.ConnectionId);
@@ -162,7 +189,10 @@ namespace LSC.OnlineCourse.API.Chat
             }
         }
 
-        // This would be called when an admin connects
+        /// <summary>
+        /// This would be called when an admin connects
+        /// </summary>
+        /// <returns></returns>
         public async Task RegisterAdmin()
         {
             var admin = ConnectedUsers.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);
@@ -180,7 +210,11 @@ namespace LSC.OnlineCourse.API.Chat
             }
         }
 
-        // Send message between connected user and admin
+        /// <summary>
+        /// Send message between connected user and admin
+        /// </summary>
+        /// <param name="message"></param>
+        /// <returns></returns>
         public async Task SendMessageToAdmin(string message)
         {
             var sender = ConnectedUsers.FirstOrDefault(u => u.ConnectionId == Context.ConnectionId);//or we can use senderConnectionId
@@ -196,7 +230,9 @@ namespace LSC.OnlineCourse.API.Chat
             }
         }
 
-        // Class to hold connected user details
+        /// <summary>
+        /// Class to hold connected user details
+        /// </summary>
         private class ConnectedUser
         {
             public string ConnectionId { get; set; }
@@ -206,7 +242,13 @@ namespace LSC.OnlineCourse.API.Chat
             public string LastName { get; set; }
             public bool IsAdmin { get; set; }
         }
-
+        /// <summary>
+        /// Represents a record of a message sent by a user, including details about the sender, the message content, 
+        /// the time it was sent, and the sender's username.
+        /// </summary>
+        /// <remarks>This class is used to store and manage information about individual messages in a
+        /// messaging system.  It includes properties for the sender's connection ID, the message content, the timestamp
+        /// of when the  message was sent, and the username of the sender.</remarks>
         private class MessageHistory
         {
             public string? SenderConnectionId { get; set; }

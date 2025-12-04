@@ -2,6 +2,9 @@
 
 namespace LSC.OnlineCourse.API.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IUserClaims
     {
         string GetCurrentUserEmail();

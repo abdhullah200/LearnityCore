@@ -6,6 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LSC.OnlineCourse.API.Controllers
 {
+    /// <summary>
+    /// Provides endpoints for managing user reviews, including retrieving, creating, updating, and deleting reviews.
+    /// </summary>
+    /// <remarks>This controller handles operations related to user reviews, such as fetching reviews by ID,
+    /// course, or user,  as well as adding, updating, and deleting reviews. All endpoints require
+    /// authorization.</remarks>
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
@@ -29,6 +35,11 @@ namespace LSC.OnlineCourse.API.Controllers
             return Ok(review);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="courseId"></param>
+        /// <returns></returns>
         [HttpGet("course/{courseId}")]
         public async Task<ActionResult<IEnumerable<UserReviewModel>>> GetReviewsByCourseId(int courseId)
         {

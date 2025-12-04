@@ -9,6 +9,7 @@ namespace LSC.OnlineCourse.API.Common
     {
         public class AdminRoleAttribute : Attribute, IAuthorizationFilter
         {
+           
             public void OnAuthorization(AuthorizationFilterContext context)
             {
                 var userClaims = context.HttpContext.RequestServices.GetService<IUserClaims>();

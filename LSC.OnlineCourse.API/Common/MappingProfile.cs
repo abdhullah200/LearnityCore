@@ -4,8 +4,24 @@ using LSC.OnlineCourse.Core.Models;
 
 namespace LSC.OnlineCourse.API.Common
 {
+    /// <summary>
+    /// Provides mapping configurations between domain models and data transfer objects (DTOs) for use in the
+    /// application. This class defines mappings for various entities, including videos, courses, enrollments, payments,
+    /// reviews, and instructors.
+    /// </summary>
+    /// <remarks>This class inherits from the <see cref="Profile"/> class provided by AutoMapper and is used
+    /// to configure object-object mappings. The mappings defined here include custom transformations and ignore rules
+    /// where necessary to handle specific use cases, such as formatting user names or excluding certain properties from
+    /// mapping.</remarks>
     public class MappingProfile : Profile
     {
+        /// <summary>
+        /// Configures object-object mappings for the application using AutoMapper.
+        /// </summary>
+        /// <remarks>This profile defines mappings between various domain models and their corresponding
+        /// view models or DTOs. It includes custom mapping configurations for specific properties where necessary, such
+        /// as formatting user names or selecting specific related entities. The mappings are bidirectional where
+        /// appropriate.</remarks>
         public MappingProfile()
         {
             CreateMap<VideoRequest, VideoRequestModel>()
